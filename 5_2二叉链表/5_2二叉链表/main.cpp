@@ -1,17 +1,10 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <assert.h>
-
-//经常找后继的   用二叉链表
-typedef struct BiNode {
-	int data;	//	数据域
-	struct BiNode *Lchild, *Rchild;	//指针域   指向左右孩子
-}BiNode, *BiTree;	//前面是结点   后面是指向该结点的指针
+#include "head.h"
+extern Sqstack S;
 
 void visit(BiTree T) {
 	printf("%d ", T->data);
 }
-
+// 递归遍历算法
 //二叉树的 先序遍历算法
 void PreOrderTraverse(BiTree T) {
 	if (T == NULL)	//判断二叉树是否为空    为空的话返回
@@ -47,9 +40,31 @@ void PostOrderTraverse(BiTree T) {
 		visit(T);	//对结点进行访问
 	}
 }
+
+// 非递归遍历算法
+// 利用栈 直线非递归遍历二叉树
+// 中序遍历非递归算法
+
+bool InOrderTraverse_N(BiTree T) {
+	BiTree p = T;
+	BiTree q = NULL;
+	InitStack(S);
+	while (p || !EmptyStack(S)) {
+		if (p) {
+			Push(S, q);
+			p = p->Lchild;
+		}
+		else {
+			Pop(S, q);
+			printf("%d ", 1);//实际是 q->data   这里是因为 二叉树还为建立  就打印了 1
+			assert(q);
+			p = q->Rchild;
+		}
+	}
+	return true;
+}
 int main() {
-
-
+	
 	printf("%d ", 1);
 	return 0;
 }
