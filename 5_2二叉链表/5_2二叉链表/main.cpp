@@ -45,6 +45,24 @@ void PostOrderTraverse(BiTree T) {
 // 利用栈 直线非递归遍历二叉树
 // 中序遍历非递归算法
 
+BiTree BT;
+BiNode* creatNode(int data) {
+	BiNode* T = (BiNode*)malloc(sizeof(BiNode));
+	assert(T);
+	T->data = data;
+	T->Lchild = NULL;
+	T->Rchild = NULL;
+	return T;
+}
+bool InitBinTree(BiTree T, int data) {
+	T = (BiNode*)malloc(sizeof(BiNode)* MAXSIZE);
+	assert(T);
+	T->data = data;
+	T->Lchild = NULL;
+	T->Rchild = NULL;
+	return true;
+}
+
 bool InOrderTraverse_N(BiTree T) {
 	BiTree p = T;
 	BiTree q = NULL;

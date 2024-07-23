@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+#define MAXSIZE 100
+
 
 //经常找后继的   用二叉链表
 typedef struct BiNode {

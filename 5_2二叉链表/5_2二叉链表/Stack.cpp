@@ -1,5 +1,4 @@
 #include "head.h"
-#define MAXSIZE 100
 
 Sqstack S; //建立栈
 void InitStack(Sqstack& S) {
@@ -26,7 +25,7 @@ bool Push(Sqstack& S, BiNode* ele) {
 	return true;
 }
 //出栈
-bool Pop(Sqstack& S, BiTree ele) {	//再传入一个值用来接收 出栈元素的值
+bool Pop(Sqstack& S, BiNode* ele) {	//再传入一个值用来接收 出栈元素的值
 	if (S.base == S.top)
 		return false;
 	S.top--;
