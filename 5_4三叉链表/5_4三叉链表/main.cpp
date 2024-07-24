@@ -6,8 +6,8 @@
 
 typedef struct TriTNode {
 	int data;
-	struct TriTNode *parent, *LChild, *RChild;	//指针域   指向双亲结点 和 左右孩子结点
-}TriTNode, *TriTree;
+	struct TriTNode* parent, * LChild, * RChild;	//指针域   指向双亲结点 和 左右孩子结点
+}TriTNode, * TriTree;
 
 
 int main() {
