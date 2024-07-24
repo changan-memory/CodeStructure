@@ -43,14 +43,41 @@ bool CopyBiTree(BiTree& NewT, BiTree T) {	// 第一个参数是 要复制去的空间
 	else {	//不为空的话  申请空间开始复制
 		NewT = (BiNode*)malloc(sizeof(BiNode));
 		assert(NewT);
-		// 复制根结点
-		NewT->data = T->data;
-		//递归复制左子树
-		CopyBiTree(NewT->LChild, T->LChild);	
-		// 递归复制右子树
-		CopyBiTree(NewT->RChild, T->RChild);	
+		NewT->data = T->data;	// 复制根结点
+		CopyBiTree(NewT->LChild, T->LChild);	//递归复制左子树
+		CopyBiTree(NewT->RChild, T->RChild);	// 递归复制右子树
 		return true;	// 复制结束返回 true
+		//这里也可以不返回，不返回就进入下一层递归，判空后再返回
 	}
+}
+// 求二叉树的深度 
+int Depth(BiTree T) {
+	if (T == NULL)
+		return 0;
+	else {
+		int m = Depth(T->LChild);
+		int n = Depth(T->RChild);
+		return (m > n ? m + 1 : n + 1);
+	}
+}
+
+// 求二叉树的结点个数
+int NodeCount(BiTree T) {
+	if (T == NULL)	// 结点为空就返回 0
+		return 0;
+	else {	// 节点不为空 返回 左右子树的结点数之和再 + 1
+		return NodeCount(T->LChild) + NodeCount(T->RChild) + 1;	// 递归，层次渐进
+	}
+}
+
+// 求二叉树的叶子结点数
+int LeafCount(BiTree T) {
+	if (T == NULL)
+		return 0;	//为空 返回 0
+	if ((T->LChild == NULL) && (T->RChild == NULL))
+		return 1;	//左右都为空 是叶子结点 返回1
+	else							//不为空的话向下找子树 返回左右子树的叶子结点之和
+		return LeafCount(T->LChild) + LeafCount(T->RChild);
 }
 int main() {
 	BiTree T;
@@ -61,5 +88,6 @@ int main() {
 	CopyBiTree(T2, T);
 	PreOrderTraverse(T2);
 	std::cout << "\n";
+	std::cout << NodeCount(T) << " ";
 	return 0;
 }
