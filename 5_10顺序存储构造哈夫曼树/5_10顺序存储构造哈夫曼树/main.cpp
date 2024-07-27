@@ -30,6 +30,7 @@ void creatHuffmanTree(HuffmanTree HT, int n) {
 		std:: cin >> HT[i].weight;
 	// 初始化过后 生成哈夫曼树
 	int s1 = 0, s2 = 0;
+	//Select(HT, s1, s2);
 	for (int i = n + 1; i <= m; i++) {
 		//Select(HT, s1, s2);
 		HT[s1].parent = i;
