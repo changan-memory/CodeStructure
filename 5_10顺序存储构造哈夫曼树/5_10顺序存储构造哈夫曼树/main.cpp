@@ -11,15 +11,16 @@ typedef struct HTNode {
 void Select(HuffmanTree HT, int i, int& s1, int& s2) {	// 要遍历 1 到 i (需要包含新建立的结点)
 	//int min_1 = 0, min_2 = 0;
 	s1 = HT[1].weight;	//存储 最小 和 第二小 的权重
-	s2 = HT[1].weight;
+	s2 = HT[2].weight;
 	for (int j = 1; j <= i; j++) {
-		if (HT[j].weight <= s1 && HT[j].parent == 0)
+		if (HT[j].weight <= s1 && HT[j].parent == 0) {
+			s2 = s1;
 			s1 = HT[j].weight;
+		}
+		else if (HT[j].weight < s2 && HT[j].parent == 0)
+			s2 = HT[i].weight;
 	}
-	for (int j = 1; j <= i; j++) {
-		if (HT[j].weight <= s2 && HT[j].weight >= s1 && HT[j].parent == 0)
-			s2 = HT[j].weight;
-	}
+	
 }
 // 构造一个结构数组 存放 结点, 数组中的第一个空间不放结点  n个叶子结点，共有 (2n-1) 个结点
 // 数组大小定为 2n  刚好可以放下  1--(2n-1)
