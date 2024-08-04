@@ -1,5 +1,6 @@
 #include <iostream>
-#define MaxInt 32767
+#include <stdlib.h>;
+#include <assert.h>
 #define MVNum 100
 
 // 顶点表内存储的是顶点的数据，此处用 int替代，应该根据时期情况进行更改
@@ -36,6 +37,17 @@ bool CreatUDN(AMGraph& G) {	//undigraph network 无向图
 		G.arcs[j][i] = G.arcs[i][j];
 	}
 	return true;
+}
+
+void DFS(AMGraph& G, int v) {//假设有6 个节点 v 0 - 5   传入的v 代表第 i 个结点 i 应该与存储顶点的数组下标一致
+	int* visited = (int*)malloc(sizeof(int) * G.vex_num);	//访问过的元素 记录数组
+	assert(visited);
+	std::cout << G.vexs[v];	//访问结点的数据
+	visited[v] = true;		//访问过后标记为 true
+	for (int w = 0; w < G.vex_num; ++w)
+		if (G.arcs[v][w] != 0 && (!visited[w]))
+			DFS(G, w);
+	free(visited);
 }
 int main() {
 
