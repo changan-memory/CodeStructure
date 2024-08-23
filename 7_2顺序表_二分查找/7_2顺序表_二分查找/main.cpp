@@ -35,13 +35,13 @@ int Search_Bin_Recur(SSTable& ST, int& keyword, int low, int high) {
 	if (keyword == ST.base[mid].keyword)
 		return mid;
 	else if (keyword < ST.base[mid].keyword)
-		Search_Bin_Recur(ST, keyword, low, mid - 1);
+		return Search_Bin_Recur(ST, keyword, low, mid - 1);	//加不加 return 都可以
 	else
-		Search_Bin_Recur(ST, keyword, mid + 1, high);
+		return Search_Bin_Recur(ST, keyword, mid + 1, high);
 }
 
+
 int main() {
-
-
+	
 	return 0;
 }
