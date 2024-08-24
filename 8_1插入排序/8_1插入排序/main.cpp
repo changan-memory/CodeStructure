@@ -54,6 +54,25 @@ void BInsertSort(SqList& L) {
 	}
 }
 
+////Ï£¶ûÅÅÐò
+//void ShellInsert(SqList& L, int dk) {
+//	int i = 0, j = 0;
+//	for (i = dk + 1; i < L.length; ++i) {
+//		if (L.data[i].Keyword < L.data[i - dk].Keyword) {
+//			L.data[0] = L.data[i];
+//			for (j = i - dk; j > 0 && (L.data[0].Keyword < L.data[j].Keyword); j = j - dk) {
+//				L.data[j + dk] = L.data[i];
+//			}
+//
+//			L.data[j + dk] = L.data[0];
+//		}
+//	}
+//}
+//
+//void ShellSort(SqList& L, int dlta[], int t) {
+//	for (int k = 0; k < t; ++k)
+//		ShellInsert(L, dlta[k]);
+//}
 
 int main() {
 	/*RedType r1;
