@@ -54,25 +54,29 @@ void BInsertSort(SqList& L) {
 	}
 }
 
-////希尔排序
-//void ShellInsert(SqList& L, int dk) {
-//	int i = 0, j = 0;
-//	for (i = dk + 1; i < L.length; ++i) {
-//		if (L.data[i].Keyword < L.data[i - dk].Keyword) {
-//			L.data[0] = L.data[i];
-//			for (j = i - dk; j > 0 && (L.data[0].Keyword < L.data[j].Keyword); j = j - dk) {
-//				L.data[j + dk] = L.data[i];
-//			}
-//
-//			L.data[j + dk] = L.data[0];
-//		}
-//	}
-//}
-//
-//void ShellSort(SqList& L, int dlta[], int t) {
-//	for (int k = 0; k < t; ++k)
-//		ShellInsert(L, dlta[k]);
-//}
+//希尔排序
+//普通插入排序的步长为1， 希尔排序的步长为 dk
+void ShellInsert(SqList& L, int dk) {
+	int i = 0, j = 0;
+	for (i = dk + 1; i <= L.length; ++i) {		//从第一组的第二个元素开始
+		if (L.data[i].Keyword < L.data[i - dk].Keyword) {		//如果后面的比前面的小就设置哨兵
+			L.data[0] = L.data[i];
+
+			//移动元素
+			for (j = i - dk; j > 0 && (L.data[0].Keyword < L.data[j].Keyword); j = j - dk) {
+				L.data[j + dk] = L.data[i];
+			}
+			L.data[j + dk] = L.data[0];		//最后赋值
+		}
+	}
+}
+
+
+void ShellSort(SqList& L, int dlta[], int t) {	//L为待排序的线性表 dlat[]为增量序列  
+												//t 为要使用的增量序列中的元素的个数  0-(t-1)
+	for (int k = 0; k < t; ++k)					
+		ShellInsert(L, dlta[k]);				//一趟增量为 dlta[k] 的插入排序
+}
 
 int main() {
 	/*RedType r1;
@@ -91,7 +95,9 @@ int main() {
 		cout << L.data[i].Keyword << " ";
 	}
 	cout << endl;
-	InsertSort(L);
+	//InsertSort(L);
+	int arr[] = {5, 1};
+	ShellSort(L, arr, 2);
 	for (int i = 1; i <= L.length; i++) {
 		cout << L.data[i].Keyword << " ";
 	}
