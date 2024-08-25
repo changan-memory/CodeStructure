@@ -95,9 +95,9 @@ int main() {
 		cout << L.data[i].Keyword << " ";
 	}
 	cout << endl;
-	//InsertSort(L);
-	int arr[] = {5, 1};
-	ShellSort(L, arr, 2);
+	InsertSort(L);
+	//int arr[] = {5, 1};
+	//ShellSort(L, arr, 2);
 	for (int i = 1; i <= L.length; i++) {
 		cout << L.data[i].Keyword << " ";
 	}
